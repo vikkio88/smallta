@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <meta charset="UTF-8">
+    <title>sMALlTA</title>
+</head>
+<script type="application/javascript">
+
+
+    $(document).ready(function () {
+        $("#smallta").click(function(){
+            $("#smallta").toggleClass("img-flip")
+        });
+
+
+        var map;
+
+        var style = [
+            {
+                featureType: "poi",
+                stylers: [
+                    { visibility: "off" }
+                ]
+            },{
+                featureType: "transit",
+                stylers: [
+                    { visibility: "off" }
+                ]
+            },{
+                featureType: "road",
+                stylers: [
+                    { lightness: "50" },
+                    { visibility: "on" }
+                ]
+            },{
+                featureType: "landscape",
+                stylers: [
+                    { lightness: "50" }
+                ]
+            }
+        ]
+
+        var options = {
+            zoom: 9,
+            center:  new google.maps.LatLng(35.894415, 14.452088),
+            mapTypeId: google.maps.MapTypeId.SATELLITE,
+            disableDefaultUI: true,
+            scrollwheel: false
+        };
+
+        map = new google.maps.Map($('#map')[0], options);
+        map.setOptions({
+            styles: style
+        });
+
+    });
+</script>
+
+<style type="text/css">
+    #map {
+        height: 100%;
+        width: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+
+    #menu {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        opacity: 0.5;
+    }
+
+    #menu:hover{
+        opacity: 0.9;
+    }
+
+    .img-flip {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+    }
+
+</style>
+<body>
+
+<div id="map"></div>
+<div id="menu">
+    <img src="malta.png" style="height: auto;width: 80%" id="smallta"/>
+</div>
+
+</body>
+</html>
